@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
     KibanaDashboardApi is a module for Kibana dashboard that provide an API to access resource data
   }
   s.add_dependency('http')
-  s.add_dependency('http-configuration')
+  s.add_dependency('http-repeater')
   s.authors     = 'xyzkab'
   s.email       = '0xyzkab@gmail.com'
   s.files       = Dir['{lib}/**/*', '*.md'] & `git ls-files -z`.split("\0")

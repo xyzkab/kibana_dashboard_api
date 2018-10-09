@@ -1,5 +1,6 @@
 require 'http'
 require 'http/repeater'
+require 'kibana_dashboard_api/index'
 
 module KibanaDashboardApi
   

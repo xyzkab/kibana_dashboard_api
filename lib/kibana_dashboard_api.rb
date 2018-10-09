@@ -1,7 +1,8 @@
 require 'http'
-require 'http/configuration'
+require 'http/repeater'
 
 module KibanaDashboardApi
   
-  extend HTTP::Configuration
+  extend HTTP::Configuration::Mixin
+
 end

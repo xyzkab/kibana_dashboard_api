@@ -13,6 +13,18 @@ module KibanaDashboardApi
         end
       end
 
+      def self.find(id)
+        all.find do |pattern|
+          pattern.id == id
+        end
+      end
+
+      def self.find_by_title(title)
+        all.find do |pattern|
+          pattern.title == "#{title}*"
+        end
+      end
+
       attr_reader :id, :title, :type, :time_field_name
 
       def initialize(attributes)

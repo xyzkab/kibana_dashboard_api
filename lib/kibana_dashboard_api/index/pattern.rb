@@ -34,6 +34,7 @@ module KibanaDashboardApi
 
       def destroy
         req = HTTP::Repeater.delete("/api/saved_objects/index-pattern/#{@id}")
+        
         if req.status.code != 200
           raise HTTP::RequestError.new("id `#{@id}` not found")
         else

@@ -60,6 +60,11 @@ module KibanaDashboardApi
         req = HTTP::Repeater.post("/api/kibana/settings/defaultIndex", :json => {:value => @id})
         req.json
       end
+
+      def index
+        title = @title[-1] == "*" ? @title[0..-2] : @title
+        @index ||= Index.find(title)
+      end
       
     end
 

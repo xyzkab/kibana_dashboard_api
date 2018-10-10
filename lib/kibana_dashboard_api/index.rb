@@ -36,6 +36,7 @@ module KibanaDashboardApi
 
     class IndexCollection
 
+      extend Forwardable
       include Enumerable
 
       def initialize(*buckets)
@@ -46,10 +47,6 @@ module KibanaDashboardApi
 
       def [](index)
         to_a[index]
-      end
-
-      def last
-        @buckets.last
       end
 
       def to_a
@@ -67,6 +64,8 @@ module KibanaDashboardApi
       def each(*args, &block)
         @buckets.each(*args, &block)
       end
+
+      def_delegator :@buckets, :last
     end
 
   end

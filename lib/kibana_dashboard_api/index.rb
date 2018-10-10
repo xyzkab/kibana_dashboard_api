@@ -18,13 +18,8 @@ module KibanaDashboardApi
       end
     end
 
-    def patterns
-      data_pattern = {:type => "index-pattern", :fields => "title", :per_page => 10000}
-      req_pattern  = HTTP::Repeater.get("/api/saved_objects", params: data_pattern)
-
-      req_pattern.json[:saved_objects].map do |pattern|
-        Pattern.new(pattern) if pattern[:type] == "index-pattern"
-      end.select { |attribute| attribute.title.match(/#{@key}.*/) }
+    def self.patterns
+      Pattern.all
     end
 
     attr_reader :key, :doc_count
@@ -32,6 +27,10 @@ module KibanaDashboardApi
     def initialize(attributes = {})
       @key = attributes[:key]
       @doc_count = attributes[:doc_count]
+    end
+
+    def patterns
+      self.patterns.select { |attribute| attribute.title.match(/#{@key}.*/) }
     end
 
     class IndexCollection

@@ -12,9 +12,9 @@ module KibanaDashboardApi
       IndexCollection.new(*req_index.json[:aggregations][:indices][:buckets])
     end
 
-    def self.find(name)
+    def self.find(key)
       all.find do |bucket|
-        bucket.key == name
+        bucket.key == key
       end
     end
 

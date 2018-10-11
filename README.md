@@ -49,4 +49,10 @@ Here's some simple examples to get you started:
 => #<KibanaDashboardApi::Index:0x0000557e55e37230 @key="posts", @doc_count=1>
 >> pattern.destroy
 => true
+>> KibanaDashboardApi::Settings.all
+=> #<KibanaDashboardApi::Settings:0x0000556ffff3e6b0 @default_index="0b49aef0-cd31-11e8-94bd-ebd66ce45135", @date_format="MMMM Do YYYY, HH:mm:ss.SSS ">
+>> KibanaDashboardApi::Settings.set_date_format("Y/DD/MM - HH:mm:ss.SSS")
+=> #<KibanaDashboardApi::Settings:0x0000556ffff5c5c0 @default_index="0b49aef0-cd31-11e8-94bd-ebd66ce45135", @date_format="Y/DD/MM - HH:mm:ss.SSS">
+>> KibanaDashboardApi::Settings.clear_date_format
+=> #<KibanaDashboardApi::Settings:0x0000556ffff81320 @default_index="0b49aef0-cd31-11e8-94bd-ebd66ce45135", @date_format="MMMM Do YYYY, HH:mm:ss.SSS ">
 ```

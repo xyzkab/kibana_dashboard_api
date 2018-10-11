@@ -37,13 +37,22 @@ module KibanaDashboardApi
 
       def save
         data   = {:attributes => {:title => "#{@title}*", :timeFieldName => @time_field_name} }
-        req    = HTTP::Repeater.post("/api/saved_objects/index-pattern", :json => data)
-        @id    = req.json[:id]
-        @type  = req.json[:type]
-        @title = req.json[:attributes][:title]
-        @time_field_name = req.json[:time_field_name]
-        set_default_index if @default_index
-        self
+        pattern = Pattern.find_by_title(@title)
+
+        if pattern # return current pattern if exist
+          @id = pattern.id
+          @type = pattern.type
+          @time_field_name = pattern.time_field_name
+          return self
+        else
+          req    = HTTP::Repeater.post("/api/saved_objects/index-pattern", :json => data)
+          @id    = req.json[:id]
+          @type  = req.json[:type]
+          @title = req.json[:attributes][:title]
+          @time_field_name = @time_field_name
+          set_default_index if @default_index
+          return self
+        end
       end
 
       def destroy

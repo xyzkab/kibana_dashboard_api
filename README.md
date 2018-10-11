@@ -40,9 +40,9 @@ Here's some simple examples to get you started:
 >> pattern.save
 => #<KibanaDashboardApi::Index::Pattern:0x0000558ec6d45670 @id="260982a0-cd2d-11e8-94bd-ebd66ce45135", @type="index-pattern", @title="posts*", @time_field_name="updated_at", @default_index=true>
 >> KibanaDashboardApi::Index.patterns
-=> [#<KibanaDashboardApi::Index::Pattern:0x0000557e5627cc00 @id="260982a0-cd2d-11e8-94bd-ebd66ce45135", @type="index-pattern", @title="posts", @time_field_name="updated_at", @default_index=false>]
+=> [#<KibanaDashboardApi::Index::Pattern:0x0000557e5627cc00 @id="260982a0-cd2d-11e8-94bd-ebd66ce45135", @type="index-pattern", @title="posts", @time_field_name="updated_at", @default_index=true>]
 >> pattern = KibanaDashboardApi::Index::Pattern.find("de05e720-cd1b-11e8-94bd-ebd66ce45135")
-=> #<KibanaDashboardApi::Index::Pattern:0x0000557e55e6a568 @id="260982a0-cd2d-11e8-94bd-ebd66ce45135", @type="index-pattern", @title="posts", @time_field_name="updated_at", @default_index=false>
+=> #<KibanaDashboardApi::Index::Pattern:0x0000557e55e6a568 @id="260982a0-cd2d-11e8-94bd-ebd66ce45135", @type="index-pattern", @title="posts", @time_field_name="updated_at", @default_index=true>
 >> pattern.index
 => #<KibanaDashboardApi::Index:0x0000557e55e37230 @key="posts", @doc_count=1>
 >> pattern.destroy

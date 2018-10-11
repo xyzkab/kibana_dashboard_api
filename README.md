@@ -45,4 +45,6 @@ Here's some simple examples to get you started:
 => #<KibanaDashboardApi::Index::Pattern:0x0000557e55e6a568 @id="260982a0-cd2d-11e8-94bd-ebd66ce45135", @type="index-pattern", @title="posts", @time_field_name="updated_at", @default_index=false>
 >> pattern.index
 => #<KibanaDashboardApi::Index:0x0000557e55e37230 @key="posts", @doc_count=1>
+>> pattern.destroy
+=> true
 ```

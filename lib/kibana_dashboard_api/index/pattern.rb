@@ -56,6 +56,17 @@ module KibanaDashboardApi
         end
       end
 
+      def update_attributes(attributes)
+        data = {:attributes => attributes}
+
+        if fieldFormatMap = attributes[:fieldFormatMap]
+          data[:attributes][:fieldFormatMap] = fieldFormatMap.to_json
+        end
+
+        req  = HTTP::Repeater.put("/api/saved_objects/index-pattern/#{@id}", :json => data)
+        req.json
+      end
+
       def set_default_index
         req = HTTP::Repeater.post("/api/kibana/settings/defaultIndex", :json => {:value => @id})
         req.json

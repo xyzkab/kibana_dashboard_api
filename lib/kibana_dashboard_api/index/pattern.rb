@@ -34,7 +34,7 @@ module KibanaDashboardApi
 
       def initialize(attributes)
         @id    = attributes[:id]
-        @type  = attributes[:type]
+        @type  = attributes[:type] || "index-pattern" # Kibana default index-type
         @title = attributes[:attributes] ? attributes[:attributes][:title] : attributes[:title]
         @time_field_name = attributes[:attributes] ? attributes[:attributes][:timeFieldName] : attributes[:time_field_name]
         @default_index   = attributes[:default_index] || false

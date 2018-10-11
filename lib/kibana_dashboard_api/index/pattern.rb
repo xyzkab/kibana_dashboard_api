@@ -9,8 +9,13 @@ module KibanaDashboardApi
         req  = HTTP::Repeater.get("/api/saved_objects", params: data)
 
         req.json[:saved_objects].map do |pattern|
+          pattern[:default_index] = default_index?(pattern[:id])
           new(pattern) if pattern[:type] == "index-pattern"
         end
+      end
+
+      def self.default_index?(id)
+        Settings.all.default_index == id
       end
 
       def self.find(id)

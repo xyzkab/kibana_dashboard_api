@@ -5,7 +5,7 @@ module KibanaDashboardApi
     class Pattern
 
       def self.all
-        data_pattern = {:type => "index-pattern", :fields => "title", :per_page => 10000}
+        data_pattern = {:type => "index-pattern", :fields => ["title","timeFieldName"], :per_page => 10000}
         req_pattern  = HTTP::Repeater.get("/api/saved_objects", params: data_pattern)
 
         req_pattern.json[:saved_objects].map do |pattern|
@@ -31,7 +31,7 @@ module KibanaDashboardApi
         @id    = attributes[:id]
         @type  = attributes[:type]
         @title = attributes[:attributes] ? attributes[:attributes][:title] : attributes[:title]
-        @time_field_name = attributes[:time_field_name]
+        @time_field_name = attributes[:attributes] ? attributes[:attributes][:timeFieldName] : attributes[:time_field_name]
         @default_index = attributes[:default_index] || false
       end
 

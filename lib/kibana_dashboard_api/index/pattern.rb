@@ -5,10 +5,10 @@ module KibanaDashboardApi
     class Pattern
 
       def self.all
-        data_pattern = {:type => "index-pattern", :fields => ["title","timeFieldName"], :per_page => 10000}
-        req_pattern  = HTTP::Repeater.get("/api/saved_objects", params: data_pattern)
+        data = {:type => "index-pattern", :fields => ["title","timeFieldName"], :per_page => 10000}
+        req  = HTTP::Repeater.get("/api/saved_objects", params: data)
 
-        req_pattern.json[:saved_objects].map do |pattern|
+        req.json[:saved_objects].map do |pattern|
           new(pattern) if pattern[:type] == "index-pattern"
         end
       end
@@ -32,15 +32,15 @@ module KibanaDashboardApi
         @type  = attributes[:type]
         @title = attributes[:attributes] ? attributes[:attributes][:title] : attributes[:title]
         @time_field_name = attributes[:attributes] ? attributes[:attributes][:timeFieldName] : attributes[:time_field_name]
-        @default_index = attributes[:default_index] || false
+        @default_index   = attributes[:default_index] || false
       end
 
       def save
-        data   = {:attributes => {:title => "#{@title}*", :timeFieldName => @time_field_name} }
+        data    = {:attributes => {:title => "#{@title}*", :timeFieldName => @time_field_name} }
         pattern = Pattern.find_by_title(@title)
 
         if pattern # return current pattern if exist
-          @id = pattern.id
+          @id   = pattern.id
           @type = pattern.type
           @time_field_name = pattern.time_field_name
           return self
@@ -71,7 +71,7 @@ module KibanaDashboardApi
           data[:attributes][:fieldFormatMap] = fieldFormatMap.to_json
         end
 
-        req  = HTTP::Repeater.put("/api/saved_objects/index-pattern/#{@id}", :json => data)
+        req = HTTP::Repeater.put("/api/saved_objects/index-pattern/#{@id}", :json => data)
         req.json
       end
 

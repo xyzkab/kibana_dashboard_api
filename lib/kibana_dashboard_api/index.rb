@@ -6,8 +6,8 @@ module KibanaDashboardApi
   class Index
 
     def self.all
-      data_index   = {:size => 0, :aggs => {:indices => {:terms => {:field => "_index", :size => 120} }}}
-      req_index    = HTTP::Repeater.post("/elasticsearch/*/_search", json: data_index)
+      data   = {:size => 0, :aggs => {:indices => {:terms => {:field => "", :size => 120} }}}
+      req    = HTTP::Repeater.post("/elasticsearch/*/_search", json: data)
 
       IndexCollection.new(*req_index.json[:aggregations][:indices][:buckets])
     end

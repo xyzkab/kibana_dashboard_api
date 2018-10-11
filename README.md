@@ -2,6 +2,8 @@
 This is a module for Kibana dashboard that provide an API to access the resource data.  
 Currently supported resources
 * [IndexPatterns](https://www.elastic.co/guide/en/kibana/current/index-patterns.html)
+* [Settings](https://www.elastic.co/guide/en/kibana/current/advanced-options.html)
+  * `dateFormat`
 
 ## Installation
 

@@ -49,7 +49,6 @@ module KibanaDashboardApi
           @id    = req.json[:id]
           @type  = req.json[:type]
           @title = req.json[:attributes][:title]
-          @time_field_name = @time_field_name
           set_default_index if @default_index
           return self
         end

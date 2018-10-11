@@ -17,4 +17,13 @@ module KibanaDashboardApi
       end
     end
   end
+
+  def self.available?
+    begin
+      return false if !@configuration
+      return true if HTTP::Repeater.head("/")
+    rescue
+      false
+    end
+  end
 end

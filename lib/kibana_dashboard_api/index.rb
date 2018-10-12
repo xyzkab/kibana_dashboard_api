@@ -9,7 +9,7 @@ module KibanaDashboardApi
       data   = {:size => 0, :aggs => {:indices => {:terms => {:field => "", :size => 120} }}}
       req    = HTTP::Repeater.post("/elasticsearch/*/_search", json: data)
 
-      IndexCollection.new(*req_index.json[:aggregations][:indices][:buckets])
+      IndexCollection.new(*req.json[:aggregations][:indices][:buckets])
     end
 
     def self.find(key)
